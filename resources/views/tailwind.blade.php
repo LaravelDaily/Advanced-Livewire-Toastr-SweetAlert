@@ -32,10 +32,10 @@
 </script>
 
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     window.addEventListener('swal:modal', event => {
-        swal({
+        swal.fire({
             title: event.detail.title,
             text: event.detail.text,
             icon: event.detail.type,
@@ -43,18 +43,19 @@
     });
 
     window.addEventListener('swal:confirm', event => {
-        swal({
+        swal.fire({
             title: event.detail.title,
             text: event.detail.text,
             icon: event.detail.type,
-            buttons: true,
-            dangerMode: true,
+            showCancelButton: true,
         })
-            .then((willDelete) => {
-                if (willDelete) {
+            .then((result) => {
+                if (result.isConfirmed) {
                     window.livewire.emit('delete', event.detail.id);
                 }
             });
+
+
     });
 </script>
 
